@@ -1,10 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import mongoose from "mongoose";
 import express from "express";
 import { connectDB } from "./config/db";
-const app = express();
+import app from "./app";
 const PORT = process.env.PORT || 3000;
 const startServer = async() => {
     try{
