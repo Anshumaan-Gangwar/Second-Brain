@@ -97,6 +97,7 @@ export const addContent = async (req: Request, res: Response) => {
                 id: newContent._id.toString(),
                 values: embeddings || [],
                 metadata: {
+                    userId: req.userId?.toString() || "",
                     title: metadata.title,
                     content: metadata.content,
                     url: metadata.url || "",
