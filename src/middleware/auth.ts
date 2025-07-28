@@ -12,13 +12,16 @@ declare global {
 
 export const auth = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    const token = req.headers["authorization"];
+    let token = req.headers["authorization"];
     
     if (!token) {
       res.status(401).json({ message: "Authentication token missing" });
       return;
     }
-    
+    // If token starts with "Bearer ", remove it
+    if (token.startsWith("Bearer ")) {
+      token = token.slice(7);
+    }
     const decodedToken = jwt.verify(
       token as string,
       process.env.JWT_SECRET || ''
